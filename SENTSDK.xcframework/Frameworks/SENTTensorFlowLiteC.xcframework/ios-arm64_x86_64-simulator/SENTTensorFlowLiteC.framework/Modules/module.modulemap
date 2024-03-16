@@ -1,0 +1,6 @@
+framework module SENTTensorFlowLiteC {
+  umbrella header "SENTTensorFlowLiteC.h"
+  export *
+
+  module * { export * }
+}

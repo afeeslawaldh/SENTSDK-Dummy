@@ -8,11 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		6CDCE6552BA5D9DC00C98882 /* SENTSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CDCE6542BA5D9DC00C98882 /* SENTSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6CDCE6602BA5DA5200C98882 /* Sentiance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCE65B2BA5DA5200C98882 /* Sentiance.swift */; };
+		6CDCE6612BA5DA5200C98882 /* SENTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCE65C2BA5DA5200C98882 /* SENTError.swift */; };
+		6CDCE6622BA5DA5200C98882 /* SENTSDKStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCE65D2BA5DA5200C98882 /* SENTSDKStatus.swift */; };
+		6CDCE6632BA5DA5200C98882 /* SENTToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCE65E2BA5DA5200C98882 /* SENTToken.swift */; };
+		6CDCE6642BA5DA5200C98882 /* SENTResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCE65F2BA5DA5200C98882 /* SENTResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6CDCE6512BA5D9DC00C98882 /* SENTSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SENTSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CDCE6542BA5D9DC00C98882 /* SENTSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SENTSDK.h; sourceTree = "<group>"; };
+		6CDCE65B2BA5DA5200C98882 /* Sentiance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sentiance.swift; sourceTree = "<group>"; };
+		6CDCE65C2BA5DA5200C98882 /* SENTError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SENTError.swift; sourceTree = "<group>"; };
+		6CDCE65D2BA5DA5200C98882 /* SENTSDKStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SENTSDKStatus.swift; sourceTree = "<group>"; };
+		6CDCE65E2BA5DA5200C98882 /* SENTToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SENTToken.swift; sourceTree = "<group>"; };
+		6CDCE65F2BA5DA5200C98882 /* SENTResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SENTResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +55,11 @@
 		6CDCE6532BA5D9DC00C98882 /* SENTSDK */ = {
 			isa = PBXGroup;
 			children = (
+				6CDCE65C2BA5DA5200C98882 /* SENTError.swift */,
+				6CDCE65B2BA5DA5200C98882 /* Sentiance.swift */,
+				6CDCE65F2BA5DA5200C98882 /* SENTResult.swift */,
+				6CDCE65D2BA5DA5200C98882 /* SENTSDKStatus.swift */,
+				6CDCE65E2BA5DA5200C98882 /* SENTToken.swift */,
 				6CDCE6542BA5D9DC00C98882 /* SENTSDK.h */,
 			);
 			path = SENTSDK;
@@ -93,6 +108,7 @@
 				TargetAttributes = {
 					6CDCE6502BA5D9DC00C98882 = {
 						CreatedOnToolsVersion = 15.0.1;
+						LastSwiftMigration = 1500;
 					};
 				};
 			};
@@ -129,6 +145,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CDCE6612BA5DA5200C98882 /* SENTError.swift in Sources */,
+				6CDCE6632BA5DA5200C98882 /* SENTToken.swift in Sources */,
+				6CDCE6602BA5DA5200C98882 /* Sentiance.swift in Sources */,
+				6CDCE6642BA5DA5200C98882 /* SENTResult.swift in Sources */,
+				6CDCE6622BA5DA5200C98882 /* SENTSDKStatus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +279,8 @@
 		6CDCE6592BA5D9DC00C98882 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -281,12 +304,14 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.deliveryhero.logistic.SENTSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = auto;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -295,6 +320,8 @@
 		6CDCE65A2BA5D9DC00C98882 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -318,10 +345,11 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.deliveryhero.logistic.SENTSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = auto;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

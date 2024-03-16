@@ -1,0 +1,6 @@
+framework module mpde {
+  umbrella header "mpde.h"
+  export *
+
+  module * { export * }
+}

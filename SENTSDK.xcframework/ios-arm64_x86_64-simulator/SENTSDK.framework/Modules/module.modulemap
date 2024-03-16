@@ -1,0 +1,11 @@
+framework module SENTSDK {
+  umbrella header "SENTSDK.h"
+  export *
+
+  module * { export * }
+}
+
+module SENTSDK.Swift {
+  header "SENTSDK-Swift.h"
+  requires objc
+}

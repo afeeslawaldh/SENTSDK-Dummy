@@ -1,0 +1,236 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-module-flags: -target arm64-apple-ios17.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SENTSDK
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import Foundation
+@_exported import SENTSDK
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public struct SENTUserCreationError {
+}
+public struct SENTUserLinkingError {
+}
+@_hasMissingDesignatedInitializers public class SENTDisableDetectionsError {
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SENTEnableDetectionsError {
+  @objc deinit
+}
+@objc public class SENTToken : ObjectiveC.NSObject {
+  final public let tokenId: Swift.String
+  final public let expiryDate: Foundation.Date
+  public var isExpired: Swift.Bool {
+    get
+  }
+  public init(tokenId: Swift.String, expiryDate: Foundation.Date)
+  @objc deinit
+}
+@objc public class SENTUserInfo : ObjectiveC.NSObject {
+  final public let userId: Swift.String
+  final public let token: SENTSDK.SENTToken
+  public init(userId: Swift.String, token: SENTSDK.SENTToken)
+  @objc deinit
+}
+public enum SENTRequestUserContextFailureReason : Swift.UInt {
+  case noUser
+  case featureNotEnabled
+  case userDisabledRemotely
+  public init?(rawValue: Swift.UInt)
+  public typealias RawValue = Swift.UInt
+  public var rawValue: Swift.UInt {
+    get
+  }
+}
+@objc public class SENTRequestUserContextError : ObjectiveC.NSObject {
+  public var failureReason: SENTSDK.SENTRequestUserContextFailureReason
+  public init(failureReason: SENTSDK.SENTRequestUserContextFailureReason)
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers public class SENTUserAccessTokenResult : ObjectiveC.NSObject {
+  @objc deinit
+}
+public enum SENTUserAccessTokenFailureReason : Swift.UInt {
+  case noUser
+  case networkError
+  case userDisabledRemotely
+  public init?(rawValue: Swift.UInt)
+  public typealias RawValue = Swift.UInt
+  public var rawValue: Swift.UInt {
+    get
+  }
+}
+@objc public class SENTUserAccessTokenError : ObjectiveC.NSObject {
+  public var failureReason: SENTSDK.SENTUserAccessTokenFailureReason
+  public init(failureReason: SENTSDK.SENTUserAccessTokenFailureReason)
+  @objc deinit
+}
+public typealias SENTUserAccessTokenCompletionHandler = (SENTSDK.SENTUserAccessTokenResult?, SENTSDK.SENTUserAccessTokenError?) -> Swift.Void
+public protocol Sentiance {
+  static var shared: any SENTSDK.Sentiance { get }
+  var sdkStatus: SENTSDK.SENTSDKStatus { get }
+  var isUserLinked: Swift.Bool { get }
+  var userExists: Swift.Bool { get }
+  var userId: Swift.String? { get }
+  var detectionStatus: SENTSDK.SENTDetectionStatus { get }
+  func initialize(options: SENTSDK.SENTOptions)
+  func createUser(options: SENTSDK.SENTUserCreationOptions, completionHandler: SENTSDK.SENTUserCreationCompletionHandler?)
+  func enableDetections(expiryDate: Foundation.Date?, completionHandler: SENTSDK.SENTEnableDetectionsCompletionHandler?)
+  func disableDetections(completionHandler: SENTSDK.SENTDisableDetectionsCompletionHandler?)
+  func setDidReceiveSdkStatusUpdateHandler(_ handler: @escaping (SENTSDK.SENTSDKStatus) -> Swift.Void)
+  func requestUserAccessToken(completionHandler: @escaping SENTSDK.SENTUserAccessTokenCompletionHandler)
+}
+public typealias SENTUserCreationCompletionHandler = (_ result: SENTSDK.SENTUserCreationResult?, _ error: SENTSDK.SENTUserCreationError?) -> Swift.Void
+public typealias SENTUserLinkingCompletionHandler = (_ result: SENTSDK.SENTUserLinkingResult?, _ error: SENTSDK.SENTUserLinkingError?) -> Swift.Void
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class SENTEnableDetectionsResult : SENTSDK.SENTDetectionsOperationResult {
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class SENTDisableDetectionsResult : SENTSDK.SENTDetectionsOperationResult {
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SENTUserLinkingResult {
+  @objc deinit
+}
+public typealias SENTEnableDetectionsCompletionHandler = (_ result: SENTSDK.SENTEnableDetectionsResult?, _ error: SENTSDK.SENTEnableDetectionsError?) -> Swift.Void
+public typealias SENTDisableDetectionsCompletionHandler = (_ result: SENTSDK.SENTDisableDetectionsResult?, _ error: SENTSDK.SENTDisableDetectionsError?) -> Swift.Void
+public typealias SENTUserLinker = (_ installId: Swift.String, _ linkSuccess: @escaping () -> Swift.Void, _ linkFailure: @escaping () -> Swift.Void) -> Swift.Void
+@_hasMissingDesignatedInitializers public class SENTDetectionsOperationResult {
+  @objc deinit
+}
+public struct SENTOptions {
+  public enum InitializationReason {
+    case appLaunch
+    case delayedSdkInitialization
+    public static func == (a: SENTSDK.SENTOptions.InitializationReason, b: SENTSDK.SENTOptions.InitializationReason) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public init(for reason: SENTSDK.SENTOptions.InitializationReason)
+}
+public struct SENTUserCreationResult {
+  public let userInfo: SENTSDK.UserInfo
+}
+public struct UserInfo {
+}
+public class SENTUserCreationOptions {
+  public var appId: Swift.String?
+  public var secret: Swift.String?
+  public var authCode: Swift.String?
+  public var linker: SENTSDK.SENTUserLinker?
+  public var platformUrl: Swift.String?
+  public init(appId: Swift.String?, secret: Swift.String?, authCode: Swift.String?, linker: SENTSDK.SENTUserLinker?, platformUrl: Swift.String?)
+  @objc deinit
+}
+public enum SENTDetectionStatus : Swift.UInt {
+  case disabled
+  case expired
+  case enabledButBlocked
+  case enabledAndDetecting
+  public init?(rawValue: Swift.UInt)
+  public typealias RawValue = Swift.UInt
+  public var rawValue: Swift.UInt {
+    get
+  }
+}
+public enum SENTSDKInitState : Swift.UInt {
+  case notInitialized
+  case inProgress
+  case initialized
+  case resetting
+  public init?(rawValue: Swift.UInt)
+  public typealias RawValue = Swift.UInt
+  public var rawValue: Swift.UInt {
+    get
+  }
+}
+public enum SENTQuotaStatus : Swift.UInt {
+  case ok
+  case warning
+  case exceeded
+  public init?(rawValue: Swift.UInt)
+  public typealias RawValue = Swift.UInt
+  public var rawValue: Swift.UInt {
+    get
+  }
+}
+public enum SENTResetFailureReason : Swift.UInt {
+  case initInProgress
+  case resetting
+  public init?(rawValue: Swift.UInt)
+  public typealias RawValue = Swift.UInt
+  public var rawValue: Swift.UInt {
+    get
+  }
+}
+public enum SENTLocationPermission : Swift.UInt {
+  case always
+  case whileInUse
+  case never
+  public init?(rawValue: Swift.UInt)
+  public typealias RawValue = Swift.UInt
+  public var rawValue: Swift.UInt {
+    get
+  }
+}
+public enum SENTStartStatus : Swift.UInt {
+  case notStarted
+  case pending
+  case started
+  case expired
+  public init?(rawValue: Swift.UInt)
+  public typealias RawValue = Swift.UInt
+  public var rawValue: Swift.UInt {
+    get
+  }
+}
+@objc public class SENTSDKStatus : ObjectiveC.NSObject {
+  public var canDetect: Swift.Bool
+  public var isRemoteEnabled: Swift.Bool
+  public var locationPermission: SENTSDK.SENTLocationPermission
+  public var isPreciseLocationAuthorizationGranted: Swift.Bool
+  public var isAccelPresent: Swift.Bool
+  public var isGyroPresent: Swift.Bool
+  public var isGpsPresent: Swift.Bool
+  public var wifiQuotaStatus: SENTSDK.SENTQuotaStatus
+  public var mobileQuotaStatus: SENTSDK.SENTQuotaStatus
+  public var diskQuotaStatus: SENTSDK.SENTQuotaStatus
+  public var startStatus: SENTSDK.SENTStartStatus
+  public var userExists: Swift.Bool
+  public var detectionStatus: SENTSDK.SENTDetectionStatus
+  public var isDeviceLowPowerModeEnabled: Swift.Bool
+  public var isMotionActivityPermissionGranted: Swift.Bool
+  public var backgroundRefreshStatus: UIKit.UIBackgroundRefreshStatus
+  public init(canDetect: Swift.Bool, isRemoteEnabled: Swift.Bool, locationPermission: SENTSDK.SENTLocationPermission, isPreciseLocationAuthorizationGranted: Swift.Bool, isAccelPresent: Swift.Bool, isGyroPresent: Swift.Bool, isGpsPresent: Swift.Bool, wifiQuotaStatus: SENTSDK.SENTQuotaStatus, mobileQuotaStatus: SENTSDK.SENTQuotaStatus, diskQuotaStatus: SENTSDK.SENTQuotaStatus, startStatus: SENTSDK.SENTStartStatus, userExists: Swift.Bool, detectionStatus: SENTSDK.SENTDetectionStatus, isDeviceLowPowerModeEnabled: Swift.Bool, isMotionActivityPermissionGranted: Swift.Bool, backgroundRefreshStatus: UIKit.UIBackgroundRefreshStatus)
+  public func isEqualToSDKStatus(_ sdkStatus: SENTSDK.SENTSDKStatus) -> Swift.Bool
+  @objc deinit
+}
+extension SENTSDK.SENTRequestUserContextFailureReason : Swift.Equatable {}
+extension SENTSDK.SENTRequestUserContextFailureReason : Swift.Hashable {}
+extension SENTSDK.SENTRequestUserContextFailureReason : Swift.RawRepresentable {}
+extension SENTSDK.SENTUserAccessTokenFailureReason : Swift.Equatable {}
+extension SENTSDK.SENTUserAccessTokenFailureReason : Swift.Hashable {}
+extension SENTSDK.SENTUserAccessTokenFailureReason : Swift.RawRepresentable {}
+extension SENTSDK.SENTOptions.InitializationReason : Swift.Equatable {}
+extension SENTSDK.SENTOptions.InitializationReason : Swift.Hashable {}
+extension SENTSDK.SENTDetectionStatus : Swift.Equatable {}
+extension SENTSDK.SENTDetectionStatus : Swift.Hashable {}
+extension SENTSDK.SENTDetectionStatus : Swift.RawRepresentable {}
+extension SENTSDK.SENTSDKInitState : Swift.Equatable {}
+extension SENTSDK.SENTSDKInitState : Swift.Hashable {}
+extension SENTSDK.SENTSDKInitState : Swift.RawRepresentable {}
+extension SENTSDK.SENTQuotaStatus : Swift.Equatable {}
+extension SENTSDK.SENTQuotaStatus : Swift.Hashable {}
+extension SENTSDK.SENTQuotaStatus : Swift.RawRepresentable {}
+extension SENTSDK.SENTResetFailureReason : Swift.Equatable {}
+extension SENTSDK.SENTResetFailureReason : Swift.Hashable {}
+extension SENTSDK.SENTResetFailureReason : Swift.RawRepresentable {}
+extension SENTSDK.SENTLocationPermission : Swift.Equatable {}
+extension SENTSDK.SENTLocationPermission : Swift.Hashable {}
+extension SENTSDK.SENTLocationPermission : Swift.RawRepresentable {}
+extension SENTSDK.SENTStartStatus : Swift.Equatable {}
+extension SENTSDK.SENTStartStatus : Swift.Hashable {}
+extension SENTSDK.SENTStartStatus : Swift.RawRepresentable {}

@@ -1,0 +1,57 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "dskoball",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "DummyDSKBall",
+        "printedName": "DummyDSKBall",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "dummyDSKBall",
+            "printedName": "dummyDSKBall()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:8dskoball12DummyDSKBallP05dummyC0SSyF",
+            "mangledName": "$s8dskoball12DummyDSKBallP05dummyC0SSyF",
+            "moduleName": "dskoball",
+            "genericSig": "<τ_0_0 where τ_0_0 : dskoball.DummyDSKBall>",
+            "sugared_genericSig": "<Self where Self : dskoball.DummyDSKBall>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:8dskoball12DummyDSKBallP",
+        "mangledName": "$s8dskoball12DummyDSKBallP",
+        "moduleName": "dskoball",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": []
+}

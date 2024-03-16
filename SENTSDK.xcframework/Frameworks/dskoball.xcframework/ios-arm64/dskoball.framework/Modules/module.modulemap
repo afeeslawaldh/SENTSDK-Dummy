@@ -1,0 +1,11 @@
+framework module dskoball {
+  umbrella header "dskoball.h"
+  export *
+
+  module * { export * }
+}
+
+module dskoball.Swift {
+  header "dskoball-Swift.h"
+  requires objc
+}
